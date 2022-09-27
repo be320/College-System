@@ -1,16 +1,21 @@
 package com.dataserve.api;
 
+import com.dataserve.dto.Response;
 import com.dataserve.entity.Student;
 
 public interface StudentAPI {
 	
-	public Student addStudent(Student student);
+	public Response addStudent(Student student);
 	
-	public Student getStudentById(Integer id); 
+	public Response getStudentById(Integer id); 
 	
-	public Student editStudent(Student student);
+	public Response editStudent(Student student);
 	
-	public String deleteStudentById(Integer id);
+	public Response deleteStudentById(Integer id);
 	
-	public Student assignStudentToDepartment(Integer studentId, Integer departmentId);
+	public Response assignStudentToDepartment(Integer studentId, Integer departmentId);
+	
+	public Response getAllStudents();
+	
+	public Response getAllStudentsByDepartment(Integer departmentId);
 }

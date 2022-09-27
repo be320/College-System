@@ -1,15 +1,18 @@
 package com.dataserve.api;
 
+import com.dataserve.dto.Response;
 import com.dataserve.entity.Department;
 
 public interface DepartmentAPI {
 	
-	public Department addDepartment(Department department);
+	public Response addDepartment(Department department);
 	
-	public Department getDepartmentById(Integer id);
+	public Response getDepartmentById(Integer id);
 	
-	public Department editDepartment(Department department);
+	public Response editDepartment(Department department);
 	
-	public String deleteDepartmentById(Integer id);
+	public Response deleteDepartmentById(Integer id);
+	
+	public Response getAllDepartments();
 
 }
