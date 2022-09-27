@@ -18,8 +18,9 @@ public class SystemCodes {
 		UNAUTHORIZED("ERROR_400_004", "You are not authorized"),
 		
 		//500s status messages
-		GENERAL_ERROR("ERROR_500_001", "General Error"),
-		INTERNAL_SERVER_ERROR("ERROR_500_002", "Error while processing an API call: ");
+		GENERAL_ERROR("ERROR_500_001", "General Error: "),
+		INTERNAL_SERVER_ERROR("ERROR_500_002", "Error while processing an API call: "),
+		DATABASE_ERROR("ERROR_500_002", "Database Error: ");
 		
 		
 		private String code, description;

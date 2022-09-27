@@ -5,13 +5,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Response {
-	
+
 	@JsonProperty("code")
 	private String code;
-	
+
 	@JsonProperty("description")
 	private String description;
-	
+
 	@JsonProperty("body")
 	private ResponseBody responseBody;
 
@@ -38,7 +38,5 @@ public class Response {
 	public void setResponseBody(ResponseBody responseBody) {
 		this.responseBody = responseBody;
 	}
-	
-	
-	
+
 }

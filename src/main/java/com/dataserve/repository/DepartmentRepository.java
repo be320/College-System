@@ -1,5 +1,7 @@
 package com.dataserve.repository;
 
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import javax.transaction.Transactional;
@@ -13,9 +15,9 @@ import com.dataserve.utils.SystemCodes;
 public class DepartmentRepository {
 	
 	@Inject
-	DBconnection dBconnection;
+	DBconnection dbConnection;
 	
-	public Response addDepartment(Department department) {
+	public void addDepartment(Department department) {
 		Response response = new Response();
 		try {
 			return response;
@@ -27,7 +29,7 @@ public class DepartmentRepository {
 		}
 	}
 
-	public Response getDepartmentById(Integer id) {
+	public Department getDepartmentById(Integer id) {
 		Response response = new Response();
 		try {
 			return response;
@@ -39,7 +41,7 @@ public class DepartmentRepository {
 		}
 	}
 
-	public Response editDepartment(Department department) {
+	public void editDepartment(Department department) {
 		Response response = new Response();
 		try {
 			return response;
@@ -51,7 +53,7 @@ public class DepartmentRepository {
 		}
 	}
 
-	public Response deleteDepartmentById(Integer id) {
+	public void deleteDepartmentById(Integer id) {
 		Response response = new Response();
 		try {
 			return response;
@@ -63,7 +65,7 @@ public class DepartmentRepository {
 		}
 	}
 
-	public Response getAllDepartments() {
+	public List<Department> getAllDepartments() {
 		Response response = new Response();
 		try {
 			return response;

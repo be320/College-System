@@ -25,7 +25,7 @@ import com.dataserve.utils.SystemCodes;
 @Consumes(MediaType.APPLICATION_JSON)
 @Singleton
 public class DepartmentController implements DepartmentAPI {
-	
+
 	@Inject
 	private DepartmentService departmentService;
 
@@ -36,26 +36,26 @@ public class DepartmentController implements DepartmentAPI {
 		try {
 			response = departmentService.addDepartment(department);
 			return response;
-		}
-		catch(Exception ex) {	
+		} catch (Exception ex) {
 			response.setCode(SystemCodes.StatusMessages.INTERNAL_SERVER_ERROR.getCode());
-			response.setDescription(SystemCodes.StatusMessages.INTERNAL_SERVER_ERROR.getDescription() + ex.getMessage());
+			response.setDescription(
+					SystemCodes.StatusMessages.INTERNAL_SERVER_ERROR.getDescription() + ex.getMessage());
 			return response;
 		}
 	}
 
 	@Override
-    @GET
-    @Path("/{id}")
+	@GET
+	@Path("/{id}")
 	public Response getDepartmentById(@PathParam("id") Integer id) {
 		Response response = new Response();
 		try {
 			response = departmentService.getDepartmentById(id);
 			return response;
-		}
-		catch(Exception ex) {	
+		} catch (Exception ex) {
 			response.setCode(SystemCodes.StatusMessages.INTERNAL_SERVER_ERROR.getCode());
-			response.setDescription(SystemCodes.StatusMessages.INTERNAL_SERVER_ERROR.getDescription() + ex.getMessage());
+			response.setDescription(
+					SystemCodes.StatusMessages.INTERNAL_SERVER_ERROR.getDescription() + ex.getMessage());
 			return response;
 		}
 	}
@@ -67,10 +67,10 @@ public class DepartmentController implements DepartmentAPI {
 		try {
 			response = departmentService.editDepartment(department);
 			return response;
-		}
-		catch(Exception ex) {	
+		} catch (Exception ex) {
 			response.setCode(SystemCodes.StatusMessages.INTERNAL_SERVER_ERROR.getCode());
-			response.setDescription(SystemCodes.StatusMessages.INTERNAL_SERVER_ERROR.getDescription() + ex.getMessage());
+			response.setDescription(
+					SystemCodes.StatusMessages.INTERNAL_SERVER_ERROR.getDescription() + ex.getMessage());
 			return response;
 		}
 	}
@@ -83,10 +83,10 @@ public class DepartmentController implements DepartmentAPI {
 		try {
 			response = departmentService.deleteDepartmentById(id);
 			return response;
-		}
-		catch(Exception ex) {	
+		} catch (Exception ex) {
 			response.setCode(SystemCodes.StatusMessages.INTERNAL_SERVER_ERROR.getCode());
-			response.setDescription(SystemCodes.StatusMessages.INTERNAL_SERVER_ERROR.getDescription() + ex.getMessage());
+			response.setDescription(
+					SystemCodes.StatusMessages.INTERNAL_SERVER_ERROR.getDescription() + ex.getMessage());
 			return response;
 		}
 	}
@@ -98,10 +98,10 @@ public class DepartmentController implements DepartmentAPI {
 		try {
 			response = departmentService.getAllDepartments();
 			return response;
-		}
-		catch(Exception ex) {	
+		} catch (Exception ex) {
 			response.setCode(SystemCodes.StatusMessages.INTERNAL_SERVER_ERROR.getCode());
-			response.setDescription(SystemCodes.StatusMessages.INTERNAL_SERVER_ERROR.getDescription() + ex.getMessage());
+			response.setDescription(
+					SystemCodes.StatusMessages.INTERNAL_SERVER_ERROR.getDescription() + ex.getMessage());
 			return response;
 		}
 	}

@@ -26,7 +26,7 @@ import com.dataserve.utils.SystemCodes;
 @Consumes(MediaType.APPLICATION_JSON)
 @Singleton
 public class StudentController implements StudentAPI {
-	
+
 	@Inject
 	private StudentService studentService;
 
@@ -37,26 +37,26 @@ public class StudentController implements StudentAPI {
 		try {
 			response = studentService.addStudent(student);
 			return response;
-		}
-		catch(Exception ex) {	
+		} catch (Exception ex) {
 			response.setCode(SystemCodes.StatusMessages.INTERNAL_SERVER_ERROR.getCode());
-			response.setDescription(SystemCodes.StatusMessages.INTERNAL_SERVER_ERROR.getDescription() + ex.getMessage());
+			response.setDescription(
+					SystemCodes.StatusMessages.INTERNAL_SERVER_ERROR.getDescription() + ex.getMessage());
 			return response;
 		}
 	}
 
 	@Override
-    @GET
-    @Path("/{id}")
+	@GET
+	@Path("/{id}")
 	public Response getStudentById(@PathParam("id") Integer id) {
 		Response response = new Response();
 		try {
 			response = studentService.getStudentById(id);
 			return response;
-		}
-		catch(Exception ex) {	
+		} catch (Exception ex) {
 			response.setCode(SystemCodes.StatusMessages.INTERNAL_SERVER_ERROR.getCode());
-			response.setDescription(SystemCodes.StatusMessages.INTERNAL_SERVER_ERROR.getDescription() + ex.getMessage());
+			response.setDescription(
+					SystemCodes.StatusMessages.INTERNAL_SERVER_ERROR.getDescription() + ex.getMessage());
 			return response;
 		}
 	}
@@ -68,10 +68,10 @@ public class StudentController implements StudentAPI {
 		try {
 			response = studentService.editStudent(student);
 			return response;
-		}
-		catch(Exception ex) {	
+		} catch (Exception ex) {
 			response.setCode(SystemCodes.StatusMessages.INTERNAL_SERVER_ERROR.getCode());
-			response.setDescription(SystemCodes.StatusMessages.INTERNAL_SERVER_ERROR.getDescription() + ex.getMessage());
+			response.setDescription(
+					SystemCodes.StatusMessages.INTERNAL_SERVER_ERROR.getDescription() + ex.getMessage());
 			return response;
 		}
 	}
@@ -84,10 +84,10 @@ public class StudentController implements StudentAPI {
 		try {
 			response = studentService.deleteStudentById(id);
 			return response;
-		}
-		catch(Exception ex) {	
+		} catch (Exception ex) {
 			response.setCode(SystemCodes.StatusMessages.INTERNAL_SERVER_ERROR.getCode());
-			response.setDescription(SystemCodes.StatusMessages.INTERNAL_SERVER_ERROR.getDescription() + ex.getMessage());
+			response.setDescription(
+					SystemCodes.StatusMessages.INTERNAL_SERVER_ERROR.getDescription() + ex.getMessage());
 			return response;
 		}
 	}
@@ -95,15 +95,16 @@ public class StudentController implements StudentAPI {
 	@Override
 	@POST
 	@Path("/{studentId}/department/{departmentId}")
-	public Response assignStudentToDepartment(@PathParam("studentId") Integer studentId, @PathParam("departmentId") Integer departmentId) {
+	public Response assignStudentToDepartment(@PathParam("studentId") Integer studentId,
+			@PathParam("departmentId") Integer departmentId) {
 		Response response = new Response();
 		try {
 			response = studentService.assignStudentToDepartment(studentId, departmentId);
 			return response;
-		}
-		catch(Exception ex) {	
+		} catch (Exception ex) {
 			response.setCode(SystemCodes.StatusMessages.INTERNAL_SERVER_ERROR.getCode());
-			response.setDescription(SystemCodes.StatusMessages.INTERNAL_SERVER_ERROR.getDescription() + ex.getMessage());
+			response.setDescription(
+					SystemCodes.StatusMessages.INTERNAL_SERVER_ERROR.getDescription() + ex.getMessage());
 			return response;
 		}
 	}
@@ -115,10 +116,10 @@ public class StudentController implements StudentAPI {
 		try {
 			response = studentService.getAllStudents();
 			return response;
-		}
-		catch(Exception ex) {	
+		} catch (Exception ex) {
 			response.setCode(SystemCodes.StatusMessages.INTERNAL_SERVER_ERROR.getCode());
-			response.setDescription(SystemCodes.StatusMessages.INTERNAL_SERVER_ERROR.getDescription() + ex.getMessage());
+			response.setDescription(
+					SystemCodes.StatusMessages.INTERNAL_SERVER_ERROR.getDescription() + ex.getMessage());
 			return response;
 		}
 	}
@@ -131,10 +132,10 @@ public class StudentController implements StudentAPI {
 		try {
 			response = studentService.getAllStudentsByDepartment(departmentId);
 			return response;
-		}
-		catch(Exception ex) {	
+		} catch (Exception ex) {
 			response.setCode(SystemCodes.StatusMessages.INTERNAL_SERVER_ERROR.getCode());
-			response.setDescription(SystemCodes.StatusMessages.INTERNAL_SERVER_ERROR.getDescription() + ex.getMessage());
+			response.setDescription(
+					SystemCodes.StatusMessages.INTERNAL_SERVER_ERROR.getDescription() + ex.getMessage());
 			return response;
 		}
 	}

@@ -12,13 +12,13 @@ public class ResponseBody {
 
 	@JsonProperty("student")
 	private Student student;
-	
+
 	@JsonProperty("department")
 	private Department department;
-	
+
 	@JsonProperty("studentList")
 	private List<Student> studentList;
-	
+
 	@JsonProperty("departmentList")
 	private List<Department> departmentList;
 
@@ -53,6 +53,5 @@ public class ResponseBody {
 	public void setDepartmentList(List<Department> departmentList) {
 		this.departmentList = departmentList;
 	}
-	
-	
+
 }

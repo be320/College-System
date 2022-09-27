@@ -19,6 +19,7 @@ public class DepartmentService {
 	public Response addDepartment(Department department) {
 		Response response = new Response();
 		try {
+			response = 
 			return response;
 		}
 		catch(Exception ex) {	
