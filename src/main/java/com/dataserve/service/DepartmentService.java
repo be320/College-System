@@ -1,16 +1,21 @@
 package com.dataserve.service;
 
+import javax.inject.Inject;
 import javax.inject.Singleton;
 import javax.transaction.Transactional;
 
 import com.dataserve.dto.Response;
 import com.dataserve.entity.Department;
+import com.dataserve.repository.DepartmentRepository;
 import com.dataserve.utils.SystemCodes;
 
 @Singleton
 public class DepartmentService {
 	
-	@Transactional
+	@Inject
+	private DepartmentRepository departmentRepository;
+	
+	@Transactional(rollbackOn = Exception.class)
 	public Response addDepartment(Department department) {
 		Response response = new Response();
 		try {
@@ -35,7 +40,7 @@ public class DepartmentService {
 		}
 	}
 
-	@Transactional
+	@Transactional(rollbackOn = Exception.class)
 	public Response editDepartment(Department department) {
 		Response response = new Response();
 		try {
@@ -48,7 +53,7 @@ public class DepartmentService {
 		}
 	}
 
-	@Transactional
+	@Transactional(rollbackOn = Exception.class)
 	public Response deleteDepartmentById(Integer id) {
 		Response response = new Response();
 		try {
