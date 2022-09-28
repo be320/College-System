@@ -93,7 +93,7 @@ public class StudentController implements StudentAPI {
 	}
 
 	@Override
-	@POST
+	@PUT
 	@Path("/{studentId}/department/{departmentId}")
 	public Response assignStudentToDepartment(@PathParam("studentId") Integer studentId,
 			@PathParam("departmentId") Integer departmentId) {
