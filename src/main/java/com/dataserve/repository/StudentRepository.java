@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -11,6 +12,7 @@ import javax.inject.Singleton;
 import javax.transaction.Transactional;
 
 import com.dataserve.dto.Response;
+import com.dataserve.entity.Department;
 import com.dataserve.entity.Student;
 import com.dataserve.utils.DBconnection;
 import com.dataserve.utils.StaticData;
@@ -38,7 +40,9 @@ public class StudentRepository {
 			if (rowsInserted > 0) {
 				System.out.println("A new student was inserted successfully!");
 			}
+			dbConnection.closeConnection();
 		} catch (SQLException e) {
+			dbConnection.closeConnection();
 			e.printStackTrace();
 		}
 	}
@@ -58,66 +62,121 @@ public class StudentRepository {
 				studentResponse.setGpa(result.getDouble("gpa"));
 				studentResponse.setDepartment(departmentRepository.getDepartmentById(result.getInt("departmentId")));
 			}
+			dbConnection.closeConnection();
 			return studentResponse;
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			dbConnection.closeConnection();
 			e.printStackTrace();
 			return null;
 		}
 	}
 
 	public void editStudent(Student student) {
-		Response response = new Response();
+		Connection connection = dbConnection.connectToDatabase();
+		String sql = StaticData.QUERY_STUDENT_EDIT;
+		Student oldData = getStudentById(student.getStudentId());
+		if (student.getName() == null)
+			student.setName(oldData.getName());
+		if (student.getDepartment() == null)
+			student.setDepartment(oldData.getDepartment());
+		if (student.getGpa() == null)
+			student.setGpa(oldData.getGpa());
+		PreparedStatement statement;
 		try {
-			return response;
-		} catch (Exception ex) {
-			response.setCode(SystemCodes.StatusMessages.GENERAL_ERROR.getCode());
-			response.setDescription(SystemCodes.StatusMessages.GENERAL_ERROR.getDescription());
-			return response;
+			statement = connection.prepareStatement(sql);
+			statement.setString(1, student.getName());
+			statement.setDouble(2, student.getGpa());
+			statement.setInt(3, student.getDepartment().getDepartmentId());
+			statement.setInt(4, student.getStudentId());
+			int rowsUpdated = statement.executeUpdate();
+			if (rowsUpdated > 0) {
+				System.out.println("An existing student was updated successfully!");
+			}
+			dbConnection.closeConnection();
+		} catch (SQLException e) {
+			dbConnection.closeConnection();
+			e.printStackTrace();
 		}
 	}
 
 	public void deleteStudentById(Integer id) {
-		Response response = new Response();
+		Connection connection = dbConnection.connectToDatabase();
+		String sql = StaticData.QUERY_STUDENT_DELETE;
+		PreparedStatement statement;
 		try {
-			return response;
-		} catch (Exception ex) {
-			response.setCode(SystemCodes.StatusMessages.GENERAL_ERROR.getCode());
-			response.setDescription(SystemCodes.StatusMessages.GENERAL_ERROR.getDescription());
-			return response;
+			statement = connection.prepareStatement(sql);
+			statement.setInt(1, id);
+			int rowsDeleted = statement.executeUpdate();
+			if (rowsDeleted > 0) {
+				System.out.println("A student was deleted successfully!");
+			}
+			dbConnection.closeConnection();
+		} catch (SQLException e) {
+			dbConnection.closeConnection();
+			e.printStackTrace();
 		}
 	}
 
 	public void assignStudentToDepartment(Integer studentId, Integer departmentId) {
-		Response response = new Response();
 		try {
-			return response;
+			Student student = getStudentById(studentId);
+			Department department = departmentRepository.getDepartmentById(departmentId);
+			student.setDepartment(department);
+			editStudent(student);
 		} catch (Exception ex) {
-			response.setCode(SystemCodes.StatusMessages.GENERAL_ERROR.getCode());
-			response.setDescription(SystemCodes.StatusMessages.GENERAL_ERROR.getDescription());
-			return response;
+			ex.printStackTrace();
 		}
 	}
 
 	public List<Student> getAllStudents() {
-		Response response = new Response();
+		List<Student> studentResponse = new ArrayList<Student>();
+		Connection connection = dbConnection.connectToDatabase();
+		String sql = StaticData.QUERY_STUDENT_GET_ALL;
+		PreparedStatement statement;
 		try {
-			return response;
-		} catch (Exception ex) {
-			response.setCode(SystemCodes.StatusMessages.GENERAL_ERROR.getCode());
-			response.setDescription(SystemCodes.StatusMessages.GENERAL_ERROR.getDescription());
-			return response;
+			statement = connection.prepareStatement(sql);
+			ResultSet result = statement.executeQuery(sql);
+			while (result.next()) {
+				Student student = new Student();
+				student.setStudentId(result.getInt("studentId"));
+				student.setName(result.getString("name"));
+				student.setGpa(result.getDouble("gpa"));
+				student.setDepartment(departmentRepository.getDepartmentById(result.getInt("departmentId")));
+				studentResponse.add(student);
+			}
+			dbConnection.closeConnection();
+			return studentResponse;
+		} catch (SQLException e) {
+			dbConnection.closeConnection();
+			e.printStackTrace();
+			return null;
 		}
 	}
 
 	public List<Student> getAllStudentsByDepartment(Integer departmentId) {
-		Response response = new Response();
+		List<Student> studentResponse = new ArrayList<Student>();
+		Connection connection = dbConnection.connectToDatabase();
+		String sql = StaticData.QUERY_STUDENT_GET_ALL_DEPARTMENT;
+		PreparedStatement statement;
 		try {
-			return response;
-		} catch (Exception ex) {
-			response.setCode(SystemCodes.StatusMessages.GENERAL_ERROR.getCode());
-			response.setDescription(SystemCodes.StatusMessages.GENERAL_ERROR.getDescription());
-			return response;
+			statement = connection.prepareStatement(sql);
+			statement.setInt(1, departmentId);
+			ResultSet result = statement.executeQuery(sql);
+			Department department = departmentRepository.getDepartmentById(departmentId);
+			while (result.next()) {
+				Student student = new Student();
+				student.setStudentId(result.getInt("studentId"));
+				student.setName(result.getString("name"));
+				student.setGpa(result.getDouble("gpa"));
+				student.setDepartment(department);
+				studentResponse.add(student);
+			}
+			dbConnection.closeConnection();
+			return studentResponse;
+		} catch (SQLException e) {
+			dbConnection.closeConnection();
+			e.printStackTrace();
+			return null;
 		}
 	}
 
