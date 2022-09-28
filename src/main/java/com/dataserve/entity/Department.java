@@ -28,7 +28,7 @@ public class Department {
 	public Integer getDepartmentId() {
 		return departmentId;
 	}
-	
+
 	public void setDepartmentId(Integer departmentId) {
 		this.departmentId = departmentId;
 	}

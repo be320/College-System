@@ -9,7 +9,6 @@ import javax.transaction.Transactional;
 import com.dataserve.dto.Response;
 import com.dataserve.dto.ResponseBody;
 import com.dataserve.entity.Department;
-import com.dataserve.entity.Student;
 import com.dataserve.repository.DepartmentRepository;
 import com.dataserve.utils.SystemCodes;
 

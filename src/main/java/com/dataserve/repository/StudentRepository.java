@@ -9,14 +9,11 @@ import java.util.List;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
-import javax.transaction.Transactional;
 
-import com.dataserve.dto.Response;
 import com.dataserve.entity.Department;
 import com.dataserve.entity.Student;
 import com.dataserve.utils.DBconnection;
 import com.dataserve.utils.StaticData;
-import com.dataserve.utils.SystemCodes;
 
 @Singleton
 public class StudentRepository {

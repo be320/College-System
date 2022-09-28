@@ -1,7 +1,5 @@
 package com.dataserve.controller;
 
-import java.util.List;
-
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import javax.ws.rs.Consumes;

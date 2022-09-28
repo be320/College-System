@@ -14,7 +14,7 @@ public class StaticData {
 	public static final String QUERY_STUDENT_DELETE = "DELETE FROM student WHERE studentId=?";
 	public static final String QUERY_STUDENT_GET_ALL = "SELECT * FROM student";
 	public static final String QUERY_STUDENT_GET_ALL_DEPARTMENT = "SELECT * FROM student WHERE departmentId=?";
-	
+
 	public static final String QUERY_DEPARTMENT_ADD = "INSERT INTO department (name) VALUES (?)";
 	public static final String QUERY_DEPARTMENT_GET = "SELECT * FROM department WHERE departmentId=?";
 	public static final String QUERY_DEPARTMENT_EDIT = "UPDATE department SET name=? WHERE departmentId=?";
