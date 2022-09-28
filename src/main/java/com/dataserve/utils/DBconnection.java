@@ -16,7 +16,6 @@ public class DBconnection {
 			return this.connection;
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			System.out.println("Driver loaded!");
 		} catch (ClassNotFoundException e) {
 			throw new IllegalStateException("Cannot find the driver in the classpath!", e);
 		}

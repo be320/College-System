@@ -132,7 +132,7 @@ public class StudentController implements StudentAPI {
 	@GET
 	@Path("/department/{departmentId}")
 	@Override
-	public Response getAllStudentsByDepartment(Integer departmentId) {
+	public Response getAllStudentsByDepartment(@PathParam("departmentId") Integer departmentId) {
 		Response response = new Response();
 		try {
 			response = studentService.getAllStudentsByDepartment(departmentId);

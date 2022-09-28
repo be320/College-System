@@ -45,8 +45,8 @@ public class DepartmentService {
 			return response;
 		} catch (Exception ex) {
 			ex.printStackTrace();
-			response.setCode(SystemCodes.StatusMessages.GENERAL_ERROR.getCode());
-			response.setDescription(SystemCodes.StatusMessages.GENERAL_ERROR.getDescription());
+			response.setCode(SystemCodes.StatusMessages.DATA_NOT_EXISTING.getCode());
+			response.setDescription(SystemCodes.StatusMessages.DATA_NOT_EXISTING.getDescription());
 			return response;
 		}
 	}
@@ -77,8 +77,8 @@ public class DepartmentService {
 			return response;
 		} catch (Exception ex) {
 			ex.printStackTrace();
-			response.setCode(SystemCodes.StatusMessages.GENERAL_ERROR.getCode());
-			response.setDescription(SystemCodes.StatusMessages.GENERAL_ERROR.getDescription());
+			response.setCode(SystemCodes.StatusMessages.DATA_NOT_EXISTING.getCode());
+			response.setDescription(SystemCodes.StatusMessages.DATA_NOT_EXISTING.getDescription());
 			return response;
 		}
 	}
