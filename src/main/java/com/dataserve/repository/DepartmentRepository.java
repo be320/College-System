@@ -47,7 +47,7 @@ public class DepartmentRepository {
 		try {
 			statement = connection.prepareStatement(sql);
 			statement.setInt(1, id);
-			ResultSet result = statement.executeQuery(sql);
+			ResultSet result = statement.executeQuery();
 			while (result.next()) {
 				response.setDepartmentId(result.getInt("departmentId"));
 				response.setName(result.getString("name"));
@@ -108,7 +108,7 @@ public class DepartmentRepository {
 		PreparedStatement statement;
 		try {
 			statement = connection.prepareStatement(sql);
-			ResultSet result = statement.executeQuery(sql);
+			ResultSet result = statement.executeQuery();
 			while (result.next()) {
 				Department department = new Department();
 				department.setDepartmentId(result.getInt("departmentId"));

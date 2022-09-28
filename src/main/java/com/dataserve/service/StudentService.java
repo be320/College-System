@@ -44,6 +44,7 @@ public class StudentService {
 			response.setDescription(SystemCodes.StatusMessages.RECEIVED.getDescription());
 			return response;
 		} catch (Exception ex) {
+			ex.printStackTrace();
 			response.setCode(SystemCodes.StatusMessages.GENERAL_ERROR.getCode());
 			response.setDescription(SystemCodes.StatusMessages.GENERAL_ERROR.getDescription());
 			return response;

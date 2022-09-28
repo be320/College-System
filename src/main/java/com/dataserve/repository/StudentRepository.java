@@ -52,12 +52,13 @@ public class StudentRepository {
 		try {
 			statement = connection.prepareStatement(sql);
 			statement.setInt(1, id);
-			ResultSet result = statement.executeQuery(sql);
+			ResultSet result = statement.executeQuery();
 			while (result.next()) {
 				studentResponse.setStudentId(result.getInt("studentId"));
 				studentResponse.setName(result.getString("name"));
 				studentResponse.setGpa(result.getDouble("gpa"));
-				studentResponse.setDepartment(departmentRepository.getDepartmentById(result.getInt("departmentId")));
+				if (result.getInt("departmentId") > 0)
+					studentResponse.setDepartment(departmentRepository.getDepartmentById(result.getInt("departmentId")));
 			}
 			dbConnection.closeConnection();
 			return studentResponse;
@@ -132,7 +133,7 @@ public class StudentRepository {
 		PreparedStatement statement;
 		try {
 			statement = connection.prepareStatement(sql);
-			ResultSet result = statement.executeQuery(sql);
+			ResultSet result = statement.executeQuery();
 			while (result.next()) {
 				Student student = new Student();
 				student.setStudentId(result.getInt("studentId"));
@@ -158,7 +159,7 @@ public class StudentRepository {
 		try {
 			statement = connection.prepareStatement(sql);
 			statement.setInt(1, departmentId);
-			ResultSet result = statement.executeQuery(sql);
+			ResultSet result = statement.executeQuery();
 			Department department = departmentRepository.getDepartmentById(departmentId);
 			while (result.next()) {
 				Student student = new Student();
