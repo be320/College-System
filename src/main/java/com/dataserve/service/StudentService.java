@@ -15,7 +15,6 @@ import com.dataserve.utils.SystemCodes;
 @Singleton
 public class StudentService {
 
-//	@Inject
 	private StudentRepository studentRepository = new StudentRepository();
 
 	@Transactional(rollbackOn = Exception.class)

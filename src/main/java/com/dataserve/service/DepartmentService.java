@@ -15,8 +15,7 @@ import com.dataserve.utils.SystemCodes;
 @Singleton
 public class DepartmentService {
 
-	@Inject
-	private DepartmentRepository departmentRepository;
+	private DepartmentRepository departmentRepository = new DepartmentRepository();
 
 	@Transactional(rollbackOn = Exception.class)
 	public Response addDepartment(Department department) {

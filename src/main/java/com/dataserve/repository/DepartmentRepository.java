@@ -14,11 +14,9 @@ import com.dataserve.entity.Department;
 import com.dataserve.utils.DBconnection;
 import com.dataserve.utils.StaticData;
 
-@Singleton
 public class DepartmentRepository {
 
-	@Inject
-	DBconnection dbConnection;
+	DBconnection dbConnection = new DBconnection();
 
 	public void addDepartment(Department department) {
 		Connection connection = dbConnection.connectToDatabase();
@@ -32,9 +30,9 @@ public class DepartmentRepository {
 			if (rowsInserted > 0) {
 				System.out.println("A new department was inserted successfully!");
 			}
-			dbConnection.closeConnection();
+
 		} catch (SQLException e) {
-			dbConnection.closeConnection();
+
 			e.printStackTrace();
 		}
 	}
@@ -52,10 +50,10 @@ public class DepartmentRepository {
 				response.setDepartmentId(result.getInt("departmentId"));
 				response.setName(result.getString("name"));
 			}
-			dbConnection.closeConnection();
+
 			return response;
 		} catch (SQLException e) {
-			dbConnection.closeConnection();
+
 			e.printStackTrace();
 			return null;
 		}
@@ -76,9 +74,9 @@ public class DepartmentRepository {
 			if (rowsUpdated > 0) {
 				System.out.println("An existing department was updated successfully!");
 			}
-			dbConnection.closeConnection();
+
 		} catch (SQLException e) {
-			dbConnection.closeConnection();
+
 			e.printStackTrace();
 		}
 	}
@@ -94,9 +92,9 @@ public class DepartmentRepository {
 			if (rowsDeleted > 0) {
 				System.out.println("A department was deleted successfully!");
 			}
-			dbConnection.closeConnection();
+
 		} catch (SQLException e) {
-			dbConnection.closeConnection();
+
 			e.printStackTrace();
 		}
 	}
@@ -115,10 +113,10 @@ public class DepartmentRepository {
 				department.setName(result.getString("name"));
 				response.add(department);
 			}
-			dbConnection.closeConnection();
+
 			return response;
 		} catch (SQLException e) {
-			dbConnection.closeConnection();
+
 			e.printStackTrace();
 			return null;
 		}

@@ -15,13 +15,11 @@ import com.dataserve.entity.Student;
 import com.dataserve.utils.DBconnection;
 import com.dataserve.utils.StaticData;
 
-@Singleton
+
 public class StudentRepository {
 
-//	@Inject
 	DBconnection dbConnection = new DBconnection();
 
-//	@Inject
 	DepartmentRepository departmentRepository = new DepartmentRepository();
 
 	public void addStudent(Student student) {
@@ -37,9 +35,9 @@ public class StudentRepository {
 			if (rowsInserted > 0) {
 				System.out.println("A new student was inserted successfully!");
 			}
-			dbConnection.closeConnection();
+			
 		} catch (SQLException e) {
-			dbConnection.closeConnection();
+			
 			e.printStackTrace();
 		}
 	}
@@ -60,10 +58,10 @@ public class StudentRepository {
 				if (result.getInt("departmentId") > 0)
 					studentResponse.setDepartment(departmentRepository.getDepartmentById(result.getInt("departmentId")));
 			}
-			dbConnection.closeConnection();
+			
 			return studentResponse;
 		} catch (SQLException e) {
-			dbConnection.closeConnection();
+			
 			e.printStackTrace();
 			return null;
 		}
@@ -87,9 +85,9 @@ public class StudentRepository {
 			if (rowsUpdated > 0) {
 				System.out.println("An existing student was updated successfully!");
 			}
-			dbConnection.closeConnection();
+			
 		} catch (SQLException e) {
-			dbConnection.closeConnection();
+			
 			e.printStackTrace();
 		}
 	}
@@ -105,21 +103,32 @@ public class StudentRepository {
 			if (rowsDeleted > 0) {
 				System.out.println("A student was deleted successfully!");
 			}
-			dbConnection.closeConnection();
+			
 		} catch (SQLException e) {
-			dbConnection.closeConnection();
+			
 			e.printStackTrace();
 		}
 	}
 
 	public void assignStudentToDepartment(Integer studentId, Integer departmentId) {
+		Connection connection = dbConnection.connectToDatabase();
+		String sql = StaticData.QUERY_STUDENT_EDIT_DEPARTMENT;
+		Student student = getStudentById(studentId);
+		Department department = departmentRepository.getDepartmentById(departmentId);
+		student.setDepartment(department);
+		PreparedStatement statement;
 		try {
-			Student student = getStudentById(studentId);
-			Department department = departmentRepository.getDepartmentById(departmentId);
-			student.setDepartment(department);
-			editStudent(student);
-		} catch (Exception ex) {
-			ex.printStackTrace();
+			statement = connection.prepareStatement(sql);
+			statement.setInt(1, departmentId);
+			statement.setInt(2, studentId);
+			int rowsUpdated = statement.executeUpdate();
+			if (rowsUpdated > 0) {
+				System.out.println("An existing student was updated successfully!");
+			}
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
 		}
 	}
 
@@ -140,10 +149,10 @@ public class StudentRepository {
 					student.setDepartment(departmentRepository.getDepartmentById(result.getInt("departmentId")));
 				studentResponse.add(student);
 			}
-			dbConnection.closeConnection();
+			
 			return studentResponse;
 		} catch (SQLException e) {
-			dbConnection.closeConnection();
+			
 			e.printStackTrace();
 			return null;
 		}
@@ -167,10 +176,10 @@ public class StudentRepository {
 				student.setDepartment(department);
 				studentResponse.add(student);
 			}
-			dbConnection.closeConnection();
+			
 			return studentResponse;
 		} catch (SQLException e) {
-			dbConnection.closeConnection();
+			
 			e.printStackTrace();
 			return null;
 		}

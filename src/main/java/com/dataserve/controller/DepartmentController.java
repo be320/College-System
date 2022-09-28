@@ -24,8 +24,7 @@ import com.dataserve.utils.SystemCodes;
 @Singleton
 public class DepartmentController implements DepartmentAPI {
 
-	@Inject
-	private DepartmentService departmentService;
+	private DepartmentService departmentService = new DepartmentService();
 
 	
 	@POST

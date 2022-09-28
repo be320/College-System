@@ -7,10 +7,8 @@ import java.sql.SQLException;
 import javax.inject.Inject;
 import javax.ejb.Singleton;
 
-@Singleton
 public class DBconnection {
 
-//	@Inject
 	private Connection connection;
 
 	public Connection connectToDatabase() {
