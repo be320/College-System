@@ -1,0 +1,17 @@
+com\dataserve\utils\SystemCodes$StatusMessages.class
+com\dataserve\api\DepartmentAPI.class
+com\dataserve\repository\DepartmentRepository.class
+com\dataserve\utils\DBconnection.class
+com\dataserve\service\StudentService.class
+com\dataserve\repository\StudentRepository.class
+com\dataserve\utils\StaticData.class
+com\dataserve\service\DepartmentService.class
+com\dataserve\api\StudentAPI.class
+com\dataserve\utils\SystemCodes.class
+com\dataserve\CollegeService.class
+com\dataserve\entity\Student.class
+com\dataserve\dto\ResponseBody.class
+com\dataserve\controller\DepartmentController.class
+com\dataserve\controller\StudentController.class
+com\dataserve\dto\Response.class
+com\dataserve\entity\Department.class

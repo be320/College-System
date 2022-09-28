@@ -5,7 +5,7 @@ public class StaticData {
 	// Database Connection
 	public static final String DB_URL = "jdbc:mysql://localhost:3306/college";
 	public static final String DB_USER = "root";
-	public static final String DB_PASS = "root";
+	public static final String DB_PASS = "admin";
 
 	// SQL Queries
 	public static final String QUERY_STUDENT_ADD = "INSERT INTO student (name, gpa) VALUES (?, ?)";

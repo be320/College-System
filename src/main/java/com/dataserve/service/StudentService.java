@@ -3,7 +3,7 @@ package com.dataserve.service;
 import java.util.List;
 
 import javax.inject.Inject;
-import javax.inject.Singleton;
+import javax.ejb.Singleton;
 import javax.transaction.Transactional;
 
 import com.dataserve.dto.Response;
@@ -15,8 +15,8 @@ import com.dataserve.utils.SystemCodes;
 @Singleton
 public class StudentService {
 
-	@Inject
-	private StudentRepository studentRepository;
+//	@Inject
+	private StudentRepository studentRepository = new StudentRepository();
 
 	@Transactional(rollbackOn = Exception.class)
 	public Response addStudent(Student student) {

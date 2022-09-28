@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
-import javax.inject.Singleton;
+import javax.ejb.Singleton;
 
 import com.dataserve.entity.Department;
 import com.dataserve.entity.Student;
@@ -18,11 +18,11 @@ import com.dataserve.utils.StaticData;
 @Singleton
 public class StudentRepository {
 
-	@Inject
-	DBconnection dbConnection;
+//	@Inject
+	DBconnection dbConnection = new DBconnection();
 
-	@Inject
-	DepartmentRepository departmentRepository;
+//	@Inject
+	DepartmentRepository departmentRepository = new DepartmentRepository();
 
 	public void addStudent(Student student) {
 		Connection connection = dbConnection.connectToDatabase();

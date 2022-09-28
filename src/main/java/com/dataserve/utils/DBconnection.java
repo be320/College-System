@@ -5,17 +5,23 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 import javax.inject.Inject;
-import javax.inject.Singleton;
+import javax.ejb.Singleton;
 
 @Singleton
 public class DBconnection {
 
-	@Inject
+//	@Inject
 	private Connection connection;
 
 	public Connection connectToDatabase() {
 		if (this.connection != null)
 			return this.connection;
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			System.out.println("Driver loaded!");
+		} catch (ClassNotFoundException e) {
+			throw new IllegalStateException("Cannot find the driver in the classpath!", e);
+		}
 		try {
 			Connection conn = DriverManager.getConnection(StaticData.DB_URL, StaticData.DB_USER, StaticData.DB_PASS);
 			this.connection = conn;

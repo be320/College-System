@@ -1,7 +1,7 @@
 package com.dataserve.controller;
 
 import javax.inject.Inject;
-import javax.inject.Singleton;
+import javax.ejb.Singleton;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -23,12 +23,12 @@ import com.dataserve.utils.SystemCodes;
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 @Singleton
-public class StudentController implements StudentAPI {
+public class StudentController {
 
-	@Inject
-	private StudentService studentService;
+	
+	private StudentService studentService = new StudentService();
 
-	@Override
+	
 	@POST
 	public Response addStudent(Student student) {
 		Response response = new Response();
@@ -43,7 +43,7 @@ public class StudentController implements StudentAPI {
 		}
 	}
 
-	@Override
+	
 	@GET
 	@Path("/{id}")
 	public Response getStudentById(@PathParam("id") Integer id) {
@@ -59,7 +59,7 @@ public class StudentController implements StudentAPI {
 		}
 	}
 
-	@Override
+	
 	@PUT
 	public Response editStudent(Student student) {
 		Response response = new Response();
@@ -74,7 +74,7 @@ public class StudentController implements StudentAPI {
 		}
 	}
 
-	@Override
+	
 	@DELETE
 	@Path("/{id}")
 	public Response deleteStudentById(@PathParam("id") Integer id) {
@@ -90,7 +90,7 @@ public class StudentController implements StudentAPI {
 		}
 	}
 
-	@Override
+	
 	@PUT
 	@Path("/{studentId}/department/{departmentId}")
 	public Response assignStudentToDepartment(@PathParam("studentId") Integer studentId,
@@ -107,7 +107,7 @@ public class StudentController implements StudentAPI {
 		}
 	}
 
-	@Override
+	
 	@GET
 	public Response getAllStudents() {
 		Response response = new Response();
@@ -122,7 +122,7 @@ public class StudentController implements StudentAPI {
 		}
 	}
 
-	@Override
+	
 	@GET
 	@Path("/department/{departmentId}")
 	public Response getAllStudentsByDepartment(Integer departmentId) {
