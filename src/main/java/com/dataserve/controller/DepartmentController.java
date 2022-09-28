@@ -22,13 +22,14 @@ import com.dataserve.utils.SystemCodes;
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 @Singleton
-public class DepartmentController {
+public class DepartmentController implements DepartmentAPI {
 
 	@Inject
 	private DepartmentService departmentService;
 
 	
 	@POST
+	@Override
 	public Response addDepartment(Department department) {
 		Response response = new Response();
 		try {
@@ -45,6 +46,7 @@ public class DepartmentController {
 	
 	@GET
 	@Path("/{id}")
+	@Override
 	public Response getDepartmentById(@PathParam("id") Integer id) {
 		Response response = new Response();
 		try {
@@ -60,6 +62,7 @@ public class DepartmentController {
 
 	
 	@PUT
+	@Override
 	public Response editDepartment(Department department) {
 		Response response = new Response();
 		try {
@@ -76,6 +79,7 @@ public class DepartmentController {
 	
 	@DELETE
 	@Path("/{id}")
+	@Override
 	public Response deleteDepartmentById(@PathParam("id") Integer id) {
 		Response response = new Response();
 		try {
@@ -91,6 +95,7 @@ public class DepartmentController {
 
 	
 	@GET
+	@Override
 	public Response getAllDepartments() {
 		Response response = new Response();
 		try {

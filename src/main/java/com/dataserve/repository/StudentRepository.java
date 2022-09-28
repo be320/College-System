@@ -75,8 +75,6 @@ public class StudentRepository {
 		Student oldData = getStudentById(student.getStudentId());
 		if (student.getName() == null)
 			student.setName(oldData.getName());
-		if (student.getDepartment() == null)
-			student.setDepartment(oldData.getDepartment());
 		if (student.getGpa() == null)
 			student.setGpa(oldData.getGpa());
 		PreparedStatement statement;
@@ -84,8 +82,7 @@ public class StudentRepository {
 			statement = connection.prepareStatement(sql);
 			statement.setString(1, student.getName());
 			statement.setDouble(2, student.getGpa());
-			statement.setInt(3, student.getDepartment().getDepartmentId());
-			statement.setInt(4, student.getStudentId());
+			statement.setInt(3, student.getStudentId());
 			int rowsUpdated = statement.executeUpdate();
 			if (rowsUpdated > 0) {
 				System.out.println("An existing student was updated successfully!");
@@ -139,7 +136,8 @@ public class StudentRepository {
 				student.setStudentId(result.getInt("studentId"));
 				student.setName(result.getString("name"));
 				student.setGpa(result.getDouble("gpa"));
-				student.setDepartment(departmentRepository.getDepartmentById(result.getInt("departmentId")));
+				if (result.getInt("departmentId") > 0)
+					student.setDepartment(departmentRepository.getDepartmentById(result.getInt("departmentId")));
 				studentResponse.add(student);
 			}
 			dbConnection.closeConnection();

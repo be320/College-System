@@ -23,13 +23,14 @@ import com.dataserve.utils.SystemCodes;
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 @Singleton
-public class StudentController {
+public class StudentController implements StudentAPI {
 
 	
 	private StudentService studentService = new StudentService();
 
 	
 	@POST
+	@Override
 	public Response addStudent(Student student) {
 		Response response = new Response();
 		try {
@@ -46,6 +47,7 @@ public class StudentController {
 	
 	@GET
 	@Path("/{id}")
+	@Override
 	public Response getStudentById(@PathParam("id") Integer id) {
 		Response response = new Response();
 		try {
@@ -61,6 +63,7 @@ public class StudentController {
 
 	
 	@PUT
+	@Override
 	public Response editStudent(Student student) {
 		Response response = new Response();
 		try {
@@ -77,6 +80,7 @@ public class StudentController {
 	
 	@DELETE
 	@Path("/{id}")
+	@Override
 	public Response deleteStudentById(@PathParam("id") Integer id) {
 		Response response = new Response();
 		try {
@@ -93,6 +97,7 @@ public class StudentController {
 	
 	@PUT
 	@Path("/{studentId}/department/{departmentId}")
+	@Override
 	public Response assignStudentToDepartment(@PathParam("studentId") Integer studentId,
 			@PathParam("departmentId") Integer departmentId) {
 		Response response = new Response();
@@ -109,6 +114,7 @@ public class StudentController {
 
 	
 	@GET
+	@Override
 	public Response getAllStudents() {
 		Response response = new Response();
 		try {
@@ -125,6 +131,7 @@ public class StudentController {
 	
 	@GET
 	@Path("/department/{departmentId}")
+	@Override
 	public Response getAllStudentsByDepartment(Integer departmentId) {
 		Response response = new Response();
 		try {

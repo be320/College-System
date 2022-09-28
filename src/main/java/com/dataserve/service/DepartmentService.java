@@ -27,6 +27,7 @@ public class DepartmentService {
 			response.setDescription(SystemCodes.StatusMessages.CREATED.getDescription());
 			return response;
 		} catch (Exception ex) {
+			ex.printStackTrace();
 			response.setCode(SystemCodes.StatusMessages.GENERAL_ERROR.getCode());
 			response.setDescription(SystemCodes.StatusMessages.GENERAL_ERROR.getDescription());
 			return response;
@@ -44,6 +45,7 @@ public class DepartmentService {
 			response.setDescription(SystemCodes.StatusMessages.RECEIVED.getDescription());
 			return response;
 		} catch (Exception ex) {
+			ex.printStackTrace();
 			response.setCode(SystemCodes.StatusMessages.GENERAL_ERROR.getCode());
 			response.setDescription(SystemCodes.StatusMessages.GENERAL_ERROR.getDescription());
 			return response;
@@ -59,6 +61,7 @@ public class DepartmentService {
 			response.setDescription(SystemCodes.StatusMessages.UPDATED.getDescription());
 			return response;
 		} catch (Exception ex) {
+			ex.printStackTrace();
 			response.setCode(SystemCodes.StatusMessages.GENERAL_ERROR.getCode());
 			response.setDescription(SystemCodes.StatusMessages.GENERAL_ERROR.getDescription());
 			return response;
@@ -74,6 +77,7 @@ public class DepartmentService {
 			response.setDescription(SystemCodes.StatusMessages.DELETED.getDescription());
 			return response;
 		} catch (Exception ex) {
+			ex.printStackTrace();
 			response.setCode(SystemCodes.StatusMessages.GENERAL_ERROR.getCode());
 			response.setDescription(SystemCodes.StatusMessages.GENERAL_ERROR.getDescription());
 			return response;
@@ -91,6 +95,7 @@ public class DepartmentService {
 			response.setDescription(SystemCodes.StatusMessages.RECEIVED.getDescription());
 			return response;
 		} catch (Exception ex) {
+			ex.printStackTrace();
 			response.setCode(SystemCodes.StatusMessages.GENERAL_ERROR.getCode());
 			response.setDescription(SystemCodes.StatusMessages.GENERAL_ERROR.getDescription());
 			return response;
